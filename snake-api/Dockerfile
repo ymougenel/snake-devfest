@@ -20,4 +20,4 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
 
 EXPOSE 8080
-CMD ["java","-jar","-Dspring.profiles.active=dev","/usr/app/app.jar"]
+CMD ["java","-jar","-Dspring.profiles.active=neon","/usr/app/app.jar"]
