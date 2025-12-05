@@ -57,3 +57,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install and configure the Koyeb CLI
+        uses: koyeb-community/koyeb-actions@v2
+        with:
+          api_token: "${{ secrets.KOYEB_API }}"
+          
+      - name: Koyeb Deploy
+        run: koyeb service redeploy "outdoor-marilin/my-app"
