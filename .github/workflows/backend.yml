@@ -67,4 +67,4 @@ jobs:
           api_token: "${{ secrets.KOYEB_API }}"
           
       - name: Koyeb Deploy
-        run: koyeb service redeploy "outdoor-marilin/my-app"
+        run: koyeb service redeploy "involved-alicea/snake-devfest-api"
