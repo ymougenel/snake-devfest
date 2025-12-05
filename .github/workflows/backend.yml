@@ -28,6 +28,21 @@ jobs:
       - name: mvn unit test
         run: mvn clean test
         
+      # Scan with Trivy
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: ./snake-api
+          exit-code: 1 # Pipeline fails if CVE detected
+          severity: 'CRITICAL,HIGH'
+      
+      # Quality Check
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
   package:
     runs-on: ubuntu-latest
     steps:
